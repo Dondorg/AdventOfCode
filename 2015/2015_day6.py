@@ -24,36 +24,26 @@ instructions1 = {"toggle": toggle, "on": turnOn, "off": turnOff}
 
 instructions2 = {"toggle": addTwo, "on": addOne, "off": lowerOne}
 
+instructions = [instructions1, instructions2]
 
-
-def parseLineOne(line):
+def parseLine(line, problemPart):
     words = line.split(" ")
     if words[0] =="turn":
         words = words[1:]
-    action = instructions1[words[0]]
+    action = instructions[problemPart][words[0]]
     startX , startY = [int(number) for number in words[1].split(",")]
     stopX , stopY = [int(number) for number in words[3].split(",")]
     return (action, startX, stopX+1, startY, stopY+1)
 
-def parseLineTwo(line):
-    words = line.split(" ")
-    if words[0] =="turn":
-        words = words[1:]
-    action = instructions2[words[0]]
-    startX , startY = [int(number) for number in words[1].split(",")]
-    stopX , stopY = [int(number) for number in words[3].split(",")]
-    return (action, startX, stopX+1, startY, stopY+1)
+def solve(problemPart):
+    grid = np.zeros((1000,1000))
+    for line in input.split("\n"):
+        action, startX, startY, stopX, stopY = parseLine(line, problemPart)
+        action(grid, startX, startY, stopX, stopY)
+    print(grid.sum())
 
 def solvePartOne():
-    grid = np.zeros((1000,1000))
-    for line in input.split("\n"):
-        action, startX, startY, stopX, stopY = parseLineOne(line)
-        action(grid, startX, startY, stopX, stopY)
-    print(grid.sum())
+    solve(0)
 
 def solvePartTwo():
-    grid = np.zeros((1000,1000))
-    for line in input.split("\n"):
-        action, startX, startY, stopX, stopY = parseLineTwo(line)
-        action(grid, startX, startY, stopX, stopY)
-    print(grid.sum())
+    solve(1)
