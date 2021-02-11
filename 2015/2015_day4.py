@@ -2,24 +2,19 @@ import hashlib
 
 input = "bgvyzdsv"
 
-def solvePartOne():
+def solve(prefix):
     hexForm = ""
     i = 1
     while True:
         hexForm = hashlib.md5((input + str(i)).encode()).hexdigest()
-        if hexForm.startswith("00000"):
+        if hexForm.startswith(prefix):
             print(i)
             break
         i +=1
 
+def solvePartOne():
+    solve("00000")
 
 def solvePartTwo():
-    hexForm = ""
-    i = 1
-    while True:
-        hexForm = hashlib.md5((input + str(i)).encode()).hexdigest()
-        if hexForm.startswith("000000"):
-            print(i)
-            break
-        i +=1
-solvePartTwo()
+    solve("000000")
+
