@@ -1,12 +1,11 @@
 import hashlib
-
-input = "bgvyzdsv"
+from AOC import *
 
 def solve(prefix):
     hexForm = ""
     i = 1
     while True:
-        hexForm = hashlib.md5((input + str(i)).encode()).hexdigest()
+        hexForm = hashlib.md5((readInput(2015, 4) + str(i)).encode()).hexdigest()
         if hexForm.startswith(prefix):
             print(i)
             break
@@ -17,4 +16,3 @@ def solvePartOne():
 
 def solvePartTwo():
     solve("000000")
-
