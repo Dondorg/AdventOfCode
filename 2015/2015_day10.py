@@ -16,15 +16,17 @@ def nextLookAndSay(sequence):
     return newSequence
 
 def solvePartOne():
-    input = "1321131112"
+    input = readInput(2015, 10)
     for i in range(40):
         input = nextLookAndSay(input)
 
     print(len(input))
 
 def solvePartTwo():
-    input = "1321131112"
+    input = readInput(2015, 10)
     for i in range(50):
         input = nextLookAndSay(input)
 
     print(len(input))
+
+solvePartOne()
